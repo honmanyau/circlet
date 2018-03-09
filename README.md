@@ -109,5 +109,5 @@ export default connect(null, mapDispatchToProps)(Asteroid);
 * Rebuilt library with Babel and republished to NPM.
 * Updated documentation.
 **1.0.2**
-* Corrected how `epislon`, which is passed to every function subscribed to Circlet, is calculated.
+* Corrected how `epsilon`, which is passed to every function subscribed to Circlet, is calculated.
 * Updated documentation.

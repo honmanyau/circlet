@@ -40,7 +40,7 @@ class Circlet extends React.Component {
       const deltaTime = sigmaTime - referenceMSPF * simulatedFrames;
       const framesToSimulate = Math.floor(deltaTime / referenceMSPF);
       const finalFrame = framesToSimulate - 1;
-      const epislon = deltaTime / referenceMSPF - framesToSimulate;
+      const epsilon = deltaTime / referenceMSPF - framesToSimulate;
 
       for (let frame = 0; frame < framesToSimulate; frame++) {
         const render = (frame === finalFrame) ? true : false;
@@ -50,20 +50,20 @@ class Circlet extends React.Component {
         /*
          * The render flag is passed down so that rendering can optionally only
          * occur onces all the frames in the current loop have been simulated;
-         * epislon can be used for extrapolation.
+         * epsilon can be used for extrapolation.
          */
-        this.update(render, epislon);
+        this.update(render, epsilon);
       }
     }
 
     this.requestID = window.requestAnimationFrame(this.loop);
   }
 
-  update = (render, epislon) => {
+  update = (render, epsilon) => {
     const { subscriptions } = this.props.circlet;
 
     subscriptions.forEach((fn) => {
-      fn(render, epislon);
+      fn(render, epsilon);
     });
   }
 
