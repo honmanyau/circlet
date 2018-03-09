@@ -40,7 +40,7 @@ class Circlet extends React.Component {
       const deltaTime = sigmaTime - referenceMSPF * simulatedFrames;
       const framesToSimulate = Math.floor(deltaTime / referenceMSPF);
       const finalFrame = framesToSimulate - 1;
-      const epislon = deltaTime - framesToSimulate * referenceMSPF;
+      const epislon = deltaTime / referenceMSPF - framesToSimulate;
 
       for (let frame = 0; frame < framesToSimulate; frame++) {
         const render = (frame === finalFrame) ? true : false;
