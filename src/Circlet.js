@@ -1,7 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { initialiseCirclet } from './actions';
+import {
+  initialiseCirclet,
+  setRenderFlag,
+  updateSimulatedFrames,
+  subscribeToCirclet
+} from './actions';
 
 
 
@@ -28,17 +33,42 @@ class Circlet extends React.Component {
       this.props.initialiseCirclet(timestamp);
     }
     else {
+      const { setRenderFlag, updateSimulatedFrames } = this.props;
       const { referenceFPS, simulatedFrames } = circlet;
       const referenceMSPF = 1000 / referenceFPS;
       const sigmaTime = timestamp - initialised;
       const deltaTime = sigmaTime - referenceMSPF * simulatedFrames;
       const framesToSimulate = Math.floor(deltaTime / referenceMSPF);
-      const remainingUnsimulated = deltaTime - framesToSimulate * referenceMSPF;
+      const finalFrame = framesToSimulate - 1;
+      const epislon = deltaTime - framesToSimulate * referenceMSPF;
+
+      for (let frame = 0; frame < framesToSimulate; frame++) {
+        const render = (frame === finalFrame) ? true : false;
+
+        setRenderFlag(render);
+        updateSimulatedFrames(simulatedFrames + framesToSimulate);
+        /*
+         * The render flag is passed down so that rendering can optionally only
+         * occur onces all the frames in the current loop have been simulated;
+         * epislon can be used for extrapolation.
+         */
+        this.update(render, epislon);
+      }
     }
+
+    this.requestID = window.requestAnimationFrame(this.loop);
+  }
+
+  update = (render, epislon) => {
+    const { subscriptions } = this.props.circlet;
+
+    subscriptions.forEach((fn) => {
+      fn(render, epislon);
+    });
   }
 
   render() {
-    return null;
+    return <div>{this.props.children}</div>;
   }
 }
 
@@ -50,7 +80,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    initialiseCirclet: (timestamp) => dispatch(initialiseCirclet(timestamp))
+    initialiseCirclet: (timestamp) => dispatch(initialiseCirclet(timestamp)),
+    setRenderFlag: (flag) => dispatch(setRenderFlag(flag)),
+    updateSimulatedFrames: (frames) => dispatch(updateSimulatedFrames(frames))
   }
 }
 
