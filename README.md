@@ -87,8 +87,70 @@ class Asteroid extends React.Component {
     this.props.subscribeToCirclet(this.update);
   }
 
-  update = (render, epsilon) => {
-    // Handle calculations here, such as physics
+  update = () => {
+    // Handle physics here
+  }
+
+  // ...
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return { subscribeToCirclet: (fn) => dispatch(subscribeToCirclet(fn)) }
+}
+
+export default connect(null, mapDispatchToProps)(Asteroid);
+```
+
+Circlet calls a subscribed function with two parameters, `render` and `epsilon`. As a single loop may contain multiple simulated frames, the `render` Boolean is used as a flag to indicate the end of simulation, and when it is appropriate to call `this.setState()` to trigger visual changes that depend on a component's state.
+
+The second parameter, `epsilon`, the number of frames that has not been simulated in the last loop; it is always positive and is designed to be used for interpolation where applicable. The following example shows how `render` and `epsilon` could be used:
+
+```javascript
+import { connect } from 'react-redux';
+import { subscribeToCirclet } from 'circlet';
+
+class Asteroid extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.vx = 0;
+    this.vy = 2;
+    this.dx = 0;
+    this.dy = 0;
+    this.x = 100;
+    this.y = 0;
+    this.state = { vx: 0, vy: 2, x: 100, y: 0 }
+  }
+
+  componentDidMount() {
+    this.props.subscribeToCirclet(this.subscription);
+  }
+
+  subscription = (render, epsilon) => {
+    this.update(epsilon);
+
+    if (render) {
+      this.draw();
+    }
+  }
+
+  update = (epsilon) => {
+    const { vx, vy } = this;
+
+    this.x += vx;
+    this.y += vy;
+    // dx and dy are used for interpolated rendering only
+    this.dx = vx * epsilon;
+    this.dy = vy * epsilon;
+  }
+
+  draw = () => {
+    const { dx, dy, x, y } = this;
+
+    this.setState({
+      x: x + dx,
+      y: y + dy
+    });
   }
 
   // ...
@@ -112,4 +174,7 @@ export default connect(null, mapDispatchToProps)(Asteroid);
 
 **1.0.2**
 * Corrected how `epsilon`, which is passed to every function subscribed to Circlet, is calculated.
+* Updated documentation.
+
+**1.0.3**
 * Updated documentation.
