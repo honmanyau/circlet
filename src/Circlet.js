@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 
 class Circlet extends React.Component {
   render() {
-    retur null;
+    console.log(this.props.circlet);
+    return null;
   }
 }
 
@@ -19,4 +20,4 @@ const mapDispatchToProps = (dispatch) => {
   return {}
 }
 
-export default connect(null, null)(Circlet);
+export default connect(mapStateToProps, null)(Circlet);
