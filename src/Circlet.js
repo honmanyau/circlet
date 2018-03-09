@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { initialiseCirclet } from './actions';
+
 
 
 class Circlet extends React.Component {
@@ -23,7 +25,7 @@ class Circlet extends React.Component {
     const { initialised } = circlet;
 
     if (!initialised) {
-      // Action for initialising Circlet
+      this.props.initialiseCirclet(timestamp);
     }
     else {
       const { referenceFPS, simulatedFrames } = circlet;
@@ -47,7 +49,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {}
+  return {
+    initialiseCirclet: (timestamp) => dispatch(initialiseCirclet(timestamp))
+  }
 }
 
-export default connect(mapStateToProps, null)(Circlet);
+export default connect(mapStateToProps, mapDispatchToProps)(Circlet);
