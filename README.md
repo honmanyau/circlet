@@ -1,5 +1,7 @@
 # Circlet
 
+[![npm package](https://img.shields.io/npm/v/circlet.svg)](https://www.npmjs.org/package/circlet)
+
 > A React-Redux game loop.
 
 ## Table of Contents
