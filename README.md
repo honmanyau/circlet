@@ -209,4 +209,4 @@ In addition, the `render` flag, which is applied as an argument to any subscribe
 * Updated description for `subscribeToCirclet()` in readme.
 
 **1.1.2***
-* * Minor readme update.
+* Minor readme update.
