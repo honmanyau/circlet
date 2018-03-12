@@ -30,7 +30,7 @@ Circlet is an experimental React-Redux game loop implemented mostly according to
 Circlet is available as an [NPM package](https://www.npmjs.com/package/circlet):
 
 ```
-npm install --save circlet react-redux redux
+yarn add -D circlet react-redux redux
 ```
 
 ### Cloning This Repository
@@ -50,9 +50,11 @@ The NPM package includes a Node.js script ([auto-setup.js](https://github.com/ho
 ```sh
 create-react-app awesome-game
 cd awesome-game
+
 # The script is meant to run from the project's root directory
-cp node_modules/circlet/auto-setup .
-./auto-setup
+
+cp node_modules/circlet/auto-setup.js .
+node auto-setup
 ```
 
 ### Connect Circlet to the Redux Store
@@ -229,3 +231,6 @@ In addition, the `render` flag, which is applied as an argument to any subscribe
 **1.1.4**
 * Added a script for auto-setup with a fresh create-react-app project.
 * NPM package was broken because the incorrect directory was published. This is update is issued as a patch as it hasn't affected any users (no users)!
+
+**1.1.5**
+* Fixed incorrect path for auto-setup.js in readme and incorrect shell comand for executing Node.js scripts.
