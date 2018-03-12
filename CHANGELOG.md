@@ -38,3 +38,6 @@
 **1.1.7**
 * Minor edition in the set-up section again. I just can't get this section right or be happy with it for some reason.
 * Separated changelog from readme.
+
+**1.1.8**
+* The auto set-up script was omitting `<App />` component. This behaviour was changed and the readme was also updated accordingly.

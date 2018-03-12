@@ -45,6 +45,7 @@ function editIndexJs() {
   <Provider store={store}>
     <div>
       <Circlet />
+      <App />
     </div>
   </Provider>,
   document.getElementById('root')

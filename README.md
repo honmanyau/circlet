@@ -81,6 +81,7 @@ import { Provider } from 'react-redux';
 import Circlet from 'circlet';
 
 import store from './store';
+import App from './App';
 
 
 
@@ -88,6 +89,7 @@ ReactDOM.render(
   <Provider store={store}>
     <div>
       <Circlet />
+      <App />
     </div>
   </Provider>,
   document.getElementById('root')
