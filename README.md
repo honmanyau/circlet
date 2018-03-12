@@ -214,7 +214,7 @@ A subscribed function may be run 0 or more times each loop.
 * Corrected how `epsilon`, which is passed to every function subscribed to Circlet, is calculated.
 * Updated documentation.
 
-**1.0.3**
+**1.1.0**
 * Changed 'reference' in identifiers to 'target' to better reflect their purpose
 * Added API for setting the target FPS of Circlet
 * Updated documentation.
