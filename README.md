@@ -54,7 +54,7 @@ cd awesome-game
 # The script is meant to run from the project's root directory
 
 cp node_modules/circlet/auto-setup.js .
-node auto-setup
+node auto-setup.js
 ```
 
 ### Connect Circlet to the Redux Store
