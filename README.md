@@ -203,3 +203,6 @@ In addition, the `render` flag, which is applied as an argument to any subscribe
 * Changed 'reference' in identifiers to 'target' to better reflect their purpose
 * Added API for setting the target FPS of Circlet
 * Updated documentation.
+
+**1.1.1**
+* Updated description for `subscribeToCirclet` in readme.
