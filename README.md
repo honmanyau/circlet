@@ -180,9 +180,9 @@ The `<Circlet>` component accepts the following options as props:
 <Circlet targetFPS={30} />
 ```
 
-### `subscribeToCirclet`
+### `subscribeToCirclet()`
 
-The functionality of `subscribeToCirclet` is covered above in the [Usage](#usage) section. It should be noted that, depending on delta time (the time between two Circlet loops, which is also the time between two `window.requestAnimationFrame()`) and timestep size for simulation (`1000 / targetFPS`), a subscribed function may be called 0 or more time each loop.
+The functionality of `subscribeToCirclet()` is covered above in the [Usage](#usage) section. It should be noted that, depending on delta time (the time between two Circlet loops, which is also the time between two `window.requestAnimationFrame()`) and timestep size for simulation (`1000 / targetFPS`), a subscribed function may be called 0 or more time each loop.
 
 In addition, the `render` flag, which is applied as an argument to any subscribed function that Circlet calls, is only set to true if at least 1 frame was simulated in the last loop.
 
@@ -205,4 +205,4 @@ In addition, the `render` flag, which is applied as an argument to any subscribe
 * Updated documentation.
 
 **1.1.1**
-* Updated description for `subscribeToCirclet` in readme.
+* Updated description for `subscribeToCirclet()` in readme.
