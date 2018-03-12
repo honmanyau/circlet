@@ -16,8 +16,7 @@
 * [Usage](#usage)
 * [API](#api)
   * [`<Circlet>`](#circlet)
-  * [`circletReducer`](#circletreducer)
-  * [`subscribeToCirclet`](#subscribetocirclet)
+  * [`subscribeToCirclet()`](#subscribetocirclet)
 * [Changelog](#changelog)
 
 ## Introduction
@@ -208,3 +207,4 @@ In addition, the `render` flag, which is applied as an argument to any subscribe
 
 **1.1.1**
 * Updated description for `subscribeToCirclet()` in readme.
+* Minor readme update.
