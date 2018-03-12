@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 import {
   initialiseCirclet,
+  setTargetFPS,
   setRenderFlag,
-  updateSimulatedFrames,
-  subscribeToCirclet
+  updateSimulatedFrames
 } from './actions';
 
 
@@ -31,11 +31,12 @@ class Circlet extends React.Component {
 
     if (!initialised) {
       this.props.initialiseCirclet(timestamp);
+      this.props.setTargetFPS(Number(this.props.targetFPS) || 60);
     }
     else {
       const { setRenderFlag, updateSimulatedFrames } = this.props;
-      const { referenceFPS, simulatedFrames } = circlet;
-      const referenceMSPF = 1000 / referenceFPS;
+      const { targetFPS, simulatedFrames } = circlet;
+      const referenceMSPF = 1000 / targetFPS;
       const sigmaTime = timestamp - initialised;
       const deltaTime = sigmaTime - referenceMSPF * simulatedFrames;
       const framesToSimulate = Math.floor(deltaTime / referenceMSPF);
@@ -82,7 +83,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     initialiseCirclet: (timestamp) => dispatch(initialiseCirclet(timestamp)),
     setRenderFlag: (flag) => dispatch(setRenderFlag(flag)),
-    updateSimulatedFrames: (frames) => dispatch(updateSimulatedFrames(frames))
+    updateSimulatedFrames: (frames) => dispatch(updateSimulatedFrames(frames)),
+    setTargetFPS: (targetFPS) => dispatch(setTargetFPS(targetFPS))
   }
 }
 
