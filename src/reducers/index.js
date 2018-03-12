@@ -1,12 +1,13 @@
 import {
   INITIALISE_CIRCLET,
+  SET_TARGET_FPS,
   SET_RENDER_FLAG,
   UPDAET_SIMULATED_FRAMES,
   SUBSCRIBE_TO_CIRCLET
 } from '../actions';
 
 const initialState = {
-  referenceFPS: 60,
+  targetFPS: 60,
   initialised: 0,
   simulatedFrames: 0,
   subscriptions: [],
@@ -19,6 +20,9 @@ export default function circlet(state = initialState, action) {
   switch(type) {
     case INITIALISE_CIRCLET:
       return Object.assign({}, state, { initialised: payload.timestamp });
+
+    case SET_TARGET_FPS:
+      return Object.assign({}, state, { targetFPS: payload.targetFPS });
 
     case SET_RENDER_FLAG:
       return Object.assign({}, state, { render: payload.flag });

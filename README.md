@@ -11,7 +11,11 @@
 * [Setting up Circlet](#setting-up-circlet)
   * [Connect Circlet to the Redux Store](#connect-circlet-to-the-redux-store)
   * [Initialise Circlet as a Component](#initialise-circlet-as-a-component)
-* [Quickstart](#quickstart)
+* [Usage](#usage)
+* [API](#api)
+  * [`<Circlet>`](#circlet)
+  * [`circletReducer`](#circletreducer)
+  * [`subscribeToCirclet`](#subscribetocirclet)
 * [Changelog](#changelog)
 
 ## Introduction
@@ -74,7 +78,7 @@ ReactDOM.render(
 );
 ```
 
-## Quickstart
+## Usage
 
 To include a function in the game loop that Circlet provides, use the `subscribeToCirclet` action creator:
 
@@ -163,6 +167,40 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(null, mapDispatchToProps)(Asteroid);
 ```
 
+## API
+
+### `<Circlet>`
+
+The `Circlet` React component is mandatory and is set up as described above in the section [Setting up Circlet](#setting-up-circlet). Circlet's looping mechanism relies on the [`window.requestAnimationFrame()` web API](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), and there should only be one instance of `<Circlet>` in a given application.
+
+The `<Circlet>` component accepts the following options as props:
+* **`targetFPS`**: the `targetFPS` props is an optional parameter sets the target FPS that Circlet will attempt to achieve; the default value of `targetFP` is `60`. This option is primarily meant for FPS throttling, as Circlet's looping mechanism depends on `window.requestAnimationFrame()`, which is generally only called as fast as the display refresh rate in a browser.
+
+```javascript
+<Circlet targetFPS={30} />
+```
+
+### `subscribeToCirclet`
+
+The functionality of `subscribeToCirclet` is covered above in the [Usage](#usage) section.
+
+```javascript
+componentDidMount() {
+  this.props.subscribeToCirclet(this.subscription);
+}
+
+subscription = (render, epsilon) => {
+  this.update(epsilon);
+
+  if (render) {
+    this.draw();
+  }
+}
+```
+
+
+A subscribed function may be run 0 or more times each loop.
+
 ## Changelog
 
 **1.0.0**
@@ -177,4 +215,6 @@ export default connect(null, mapDispatchToProps)(Asteroid);
 * Updated documentation.
 
 **1.0.3**
+* Changed 'reference' in identifiers to 'target' to better reflect their purpose
+* Added API for setting the target FPS of Circlet
 * Updated documentation.
