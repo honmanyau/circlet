@@ -234,3 +234,6 @@ In addition, the `render` flag, which is applied as an argument to any subscribe
 
 **1.1.5**
 * Fixed incorrect path for auto-setup.js in readme and incorrect shell comand for executing Node.js scripts.
+
+**1.1.6**
+* Fixes in the auto set-up section of readme.
