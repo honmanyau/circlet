@@ -172,10 +172,10 @@ export default connect(null, mapDispatchToProps)(Asteroid);
 
 ### `<Circlet>`
 
-The `Circlet` React component is mandatory and is set up as described above in the section [Setting up Circlet](#setting-up-circlet). Circlet's looping mechanism relies on the [`window.requestAnimationFrame()` web API](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), and there should only be one instance of `<Circlet>` in a given application.
+The `Circlet` React component is mandatory and is set up as described above in the section [Setting up Circlet](#setting-up-circlet). Circlet's looping mechanism relies on the [`window.requestAnimationFrame()` web API](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame), and there only one instance of `<Circlet>` is necessary in a given application in which everything is animated at the same target frame rate.
 
 The `<Circlet>` component accepts the following options as props:
-* **`targetFPS`**: the `targetFPS` props is an optional parameter sets the target FPS that Circlet will attempt to achieve; the default value of `targetFP` is `60`. This option is primarily meant for FPS throttling, as Circlet's looping mechanism depends on `window.requestAnimationFrame()`, which is generally only called as fast as the display refresh rate in a browser.
+* **`targetFPS`**: the `targetFPS` props is an optional parameter sets the target FPS that Circlet will attempt to achieve; the default value of `targetFPS` is `60`. This option is primarily meant for FPS throttling, as Circlet's looping mechanism depends on `window.requestAnimationFrame()`, which is generally only called as fast as the display refresh rate in a browser.
 
 ```javascript
 <Circlet targetFPS={30} />
