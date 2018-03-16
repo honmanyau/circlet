@@ -1,6 +1,6 @@
 export const INITIALISE_CIRCLET = 'INITIALISE_CIRCLET';
 export const SET_RENDER_FLAG = 'SET_RENDER_FLAG';
-export const UPDAET_SIMULATED_FRAMES = 'UPDAET_SIMULATED_FRAMES';
+export const UPDATE_SIMULATED_FRAMES = 'UPDATE_SIMULATED_FRAMES';
 export const SUBSCRIBE_TO_CIRCLET = 'SUBSCRIBE_TO_CIRCLET';
 export const SET_TARGET_FPS = 'SET_TARGET_FPS';
 
@@ -27,7 +27,7 @@ export function setRenderFlag(flag) {
 
 export function updateSimulatedFrames(frames) {
   return {
-    type: UPDAET_SIMULATED_FRAMES,
+    type: UPDATE_SIMULATED_FRAMES,
     payload: { frames }
   }
 }

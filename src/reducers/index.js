@@ -2,7 +2,7 @@ import {
   INITIALISE_CIRCLET,
   SET_TARGET_FPS,
   SET_RENDER_FLAG,
-  UPDAET_SIMULATED_FRAMES,
+  UPDATE_SIMULATED_FRAMES,
   SUBSCRIBE_TO_CIRCLET
 } from '../actions';
 
@@ -27,7 +27,7 @@ export default function circlet(state = initialState, action) {
     case SET_RENDER_FLAG:
       return Object.assign({}, state, { render: payload.flag });
 
-    case UPDAET_SIMULATED_FRAMES:
+    case UPDATE_SIMULATED_FRAMES:
       return Object.assign({}, state, { simulatedFrames: payload.frames });
 
     case SUBSCRIBE_TO_CIRCLET:
