@@ -41,3 +41,6 @@
 
 **1.1.8**
 * The auto set-up script was omitting `<App />` component. This behaviour was changed and the readme was also updated accordingly.
+
+**1.1.9**
+* Fixed typo in an identifier.
